@@ -77,15 +77,14 @@ def handle_message(event):
     if(data[0]=='tambah'):
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text=inputmhs(data[1],data[2],data[3])))
     
-    elif isinstance(event.source, SourceUser):
-        profile = line_bot_api.get_profile(event.source.user_id)
-        if re.search('hai', text, flags=re.IGNORECASE):
-            line_bot_api.reply_message(
-                event.reply_token, [
-                    TextSendMessage(text='Hai ' + profile.display_name),
-                    TextSendMessage(text='statusmu : ' + profile.status_message)
-                ]
-            )
+    profile = line_bot_api.get_profile(event.source.user_id)
+    if re.search('hai', text, flags=re.IGNORECASE):
+        line_bot_api.reply_message(
+            event.reply_token, [
+                TextSendMessage(text='Hai ' + profile.display_name),
+                TextSendMessage(text='statusmu : ' + profile.status_message)
+            ]
+        )
 
             
 import os
