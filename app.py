@@ -41,6 +41,18 @@ handler = WebhookHandler('e0e193b4b0719aa0d83d9695edeffbad')
 #===========[ NOTE SAVER ]=======================
 notes = {}
 
+def inputmhs(nrp, nama, kosan):
+    r = requests.post("http://www.aditmasih.tk/api_kelompok1/insert.php", data={'nrp': nrp, 'nama': nama, 'alamat': kosan})
+    data = r.json()
+
+    flag = data['flag']
+    
+    if(flag == "1"):
+        return 'Data '+nama+' berhasil dimasukkan\n'
+    elif(flag == "0"):
+        return 'Data gagal dimasukkan\n'
+
+
 # Post Request
 @app.route("/callback", methods=['POST'])
 def callback():
@@ -60,6 +72,7 @@ def handle_message(event):
     gid = event.source.sender_id #get group_id
     profile = line_bot_api.get_profile(sender)
     
+    
     data=text.split('-')
     if(data[0]=='tambah'):
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text=inputmhs(data[1],data[2],data[3])))
@@ -74,16 +87,6 @@ def handle_message(event):
                 ]
             )
 
-def inputmhs(nrp, nama, kosan):
-    r = requests.post("http://www.aditmasih.tk/api_kelompok1/insert.php", data={'nrp': nrp, 'nama': nama, 'alamat': kosan})
-    data = r.json()
-
-    flag = data['flag']
-    
-    if(flag == "1"):
-        return 'Data '+nama+' berhasil dimasukkan\n'
-    elif(flag == "0"):
-        return 'Data gagal dimasukkan\n'
             
 import os
 if __name__ == "__main__":
