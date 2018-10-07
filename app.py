@@ -59,16 +59,14 @@ def handle_message(event):
     sender = event.source.user_id #get usesenderr_id
     gid = event.source.sender_id #get group_id
     profile = line_bot_api.get_profile(sender)
-    if text=="adit":
-        line_bot_api.reply_message(event.reply_token,TextSendMessage(text='Kamu jahat adit'))
-    elif text=="mail":
-        line_bot_api.reply_message(event.reply_token,TextSendMessage(text='Kamu jahat mail'))
-    elif text=="djohan":
-        line_bot_api.reply_message(event.reply_token,TextSendMessage(text='Kamu jahat djohan'))
+    
+    data=text.split('-')
+    if(data[0]=='tambah'):
+        line_bot_api.reply_message(event.reply_token, TextSendMessage(text=inputmhs(data[1],data[2],data[3])))
     
     elif isinstance(event.source, SourceUser):
         profile = line_bot_api.get_profile(event.source.user_id)
-        if re.search('hai', text, re.IGNORECASE):
+        if re.search('hai', text, flags=re.IGNORECASE):
             line_bot_api.reply_message(
                 event.reply_token, [
                     TextSendMessage(text='Hai ' + profile.display_name),
@@ -76,6 +74,17 @@ def handle_message(event):
                 ]
             )
 
+def inputmhs(nrp, nama, kosan):
+    r = requests.post("http://www.aditmasih.tk/api_kelompok1/insert.php", data={'nrp': nrp, 'nama': nama, 'alamat': kosan})
+    data = r.json()
+
+    flag = data['flag']
+    
+    if(flag == "1"):
+        return 'Data '+nama+' berhasil dimasukkan\n'
+    elif(flag == "0"):
+        return 'Data gagal dimasukkan\n'
+            
 import os
 if __name__ == "__main__":
     port = int(os.environ.get('PORT', 5000))
