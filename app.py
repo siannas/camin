@@ -68,7 +68,7 @@ def handle_message(event):
     
     elif isinstance(event.source, SourceUser):
         profile = line_bot_api.get_profile(event.source.user_id)
-        if re.search('hai', text, re.IGNORECASE)
+        if re.search('hai', text, re.IGNORECASE):
             line_bot_api.reply_message(
                 event.reply_token, [
                     TextSendMessage(text='Hai ' + profile.display_name),
