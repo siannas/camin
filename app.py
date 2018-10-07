@@ -75,8 +75,6 @@ def handle_message(event):
                     TextSendMessage(text='statusmu : ' + profile.status_message)
                 ]
             )
-    
-    line_bot_api.reply_message(event.reply_token,TextSendMessage(text='Halo '+profile.display_name+'\nKata Kunci Tidak Diketahui :) \nKetik "menu" untuk mengetahui menu yang tersedia'))
 
 import os
 if __name__ == "__main__":
