@@ -52,7 +52,17 @@ def inputmhs(nrp, nama, kosan):
     elif(flag == "0"):
         return 'Data gagal dimasukkan\n'
 
-
+def deletemhs(nrp):
+    r = requests.post("http://www.aditmasih.tk/api_pannas/insert.php", data={'nrp': nrp})
+    data = r.json()
+    
+    flag = data['flag']
+    
+    if(flag == "1"):
+        return 'Data '+nama+' berhasil dihapus\n'
+    elif(flag == "0"):
+        return 'Data gagal dihapus\n'
+    
 # Post Request
 @app.route("/callback", methods=['POST'])
 def callback():
@@ -76,6 +86,9 @@ def handle_message(event):
     data=text.split('-')
     if(data[0]=='tambah'):
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text=inputmhs(data[1],data[2],data[3])))
+    
+    elif(data[0] == 'hapus'):
+        line_not_api.reply_message(event.reply_token, TextSendMessage(Text=))
     
     elif re.search('hai', text, flags=re.IGNORECASE):
         line_bot_api.reply_message(
