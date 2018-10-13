@@ -72,7 +72,7 @@ def showmhs(nrp):
     hasil = data['data_angkatan'][0]
     
     if(flag == "1"):
-        return "nrp : " + hasil['nrp'] +"\nnama"+hasil['nama']+"\nalamat"+hasil['alamat']
+        return "nrp : " + hasil['nrp'] +"\nnama : "+hasil['nama']+"\nalamat : "+hasil['alamat']
     elif(flag == "0"):
         return 'Data Tidak ada\n'
 
