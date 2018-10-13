@@ -64,6 +64,18 @@ def deletemhs(nrp):
         return 'Data gagal dihapus\n'
     
 # Post Request
+def showmhs(nrp):
+    r = requests.get("http://www.aditmasih.tk/api_pannas/show.php", data={'nrp': nrp})
+    data = r.json()
+    
+    flag = data['flag']
+    hasil = data['data_angkatan']
+    
+    if(flag == "1"):
+        return "nrp : "+hasil[0]+"\nnama : "+hasil[1]+'\nalamat : '+hasil[2]
+    elif(flag == "0"):
+        return 'Data Tidak ada\n'
+
 @app.route("/callback", methods=['POST'])
 def callback():
     signature = request.headers['X-Line-Signature']
