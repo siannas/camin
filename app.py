@@ -42,7 +42,7 @@ handler = WebhookHandler('e0e193b4b0719aa0d83d9695edeffbad')
 notes = {}
 
 def inputmhs(nrp, nama, kosan):
-    r = requests.post("http://www.aditmasih.tk/api_kelompok1/insert.php", data={'nrp': nrp, 'nama': nama, 'alamat': kosan})
+    r = requests.post("http://www.aditmasih.tk/api_pannas/insert.php", data={'nrp': nrp, 'nama': nama, 'alamat': kosan})
     data = r.json()
 
     flag = data['flag']
