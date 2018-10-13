@@ -59,7 +59,7 @@ def deletemhs(nrp):
     flag = data['flag']
     
     if(flag == "1"):
-        return 'Data '+nama+' berhasil dihapus\n'
+        return 'Data '+nrp+' berhasil dihapus\n'
     elif(flag == "0"):
         return 'Data gagal dihapus\n'
     
