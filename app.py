@@ -88,7 +88,7 @@ def handle_message(event):
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text=inputmhs(data[1],data[2],data[3])))
     
     elif(data[0]=='hapus'):
-        line_bot_api.reply_message(event.reply_token, TextSendMessage(Text=deletemhs(data[1])))
+        line_bot_api.reply_message(event.reply_token, TextSendMessage(text=deletemhs(data[1])))
     
     elif re.search('hai', text, flags=re.IGNORECASE):
         line_bot_api.reply_message(
