@@ -69,10 +69,10 @@ def showmhs(nrp):
     data = r.json()
     
     flag = data['flag']
-    hasil = data['data_angkatan']
+    hasil = data['data_angkatan'][0]
     
     if(flag == "1"):
-        return "nrp : "
+        return "nrp : " + hasil['nrp']
     elif(flag == "0"):
         return 'Data Tidak ada\n'
 
