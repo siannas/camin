@@ -52,8 +52,8 @@ def inputmhs(nrp, nama, kosan):
     elif(flag == "0"):
         return 'Data gagal dimasukkan\n'
 
-def updatemhs(nrp, nama, kosan):
-    r = requests.post("http://www.aditmasih.tk/api_pannas/update.php", data={'nrp': nrp, 'nama': nama, 'alamat': kosan})
+def updatemhs(nrplama,nrp, nama, kosan):
+    r = requests.post("http://www.aditmasih.tk/api_pannas/update.php", data={'nrp_lama':nrplama,'nrp': nrp, 'nama': nama, 'alamat': kosan})
     data = r.json()
 
     flag = data['flag']
@@ -110,7 +110,7 @@ def handle_message(event):
     if(data[0]=='menu'):
         line_bot_api.reply_message(event.reply_token, TextSendMessage(
             '1. tambah-nrp(5)-nama-alamat\n'+
-            '2. perbarui-nrp(5)-nama-alamat\n'+
+            '2. perbarui-nrp lama-nrp(5)-nama-alamat\n'+
             '3. tampil-nrp(5)\n'+
             '4. hapus-nrp(5)\n'
         ))
@@ -125,7 +125,7 @@ def handle_message(event):
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text=showmhs(data[1])))
     
     elif(data[0]=='perbarui'):
-        line_bot_api.reply_message(event.reply_token, TextSendMessage(text=updatemhs(data[1],data[2],data[3])))
+        line_bot_api.reply_message(event.reply_token, TextSendMessage(updatemhs(data[1],data[2],data[3],data[4])))
 
     elif re.search('hai', text, re.IGNORECASE):
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text='Hai ' + profile.display_name))
