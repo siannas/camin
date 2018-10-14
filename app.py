@@ -87,6 +87,25 @@ def showmhs(nrp):
     elif(flag == "0"):
         return 'Data Tidak ada\n'
 
+def showallmhs():
+    r = requests.get("http://www.aditmasih.tk/api_pannas/all.php")
+    data = r.json()
+    
+    flag = data['flag']
+    hasil = data['data_angkatan']
+    
+    if(flag == "1"):
+        text = ''
+        index = 0
+        while hasil[index]:
+            index++
+            text += index+". nrp : " + hasil['nrp'] +
+            "\n  nama : "+hasil['nama']+
+            "\n  alamat : "+hasil['alamat']
+        return text    
+    elif(flag == "0"):
+        return 'Data Tidak ada\n'    
+    
 @app.route("/callback", methods=['POST'])
 def callback():
     signature = request.headers['X-Line-Signature']
@@ -121,9 +140,10 @@ def handle_message(event):
     elif(data[0]=='hapus'):
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text=deletemhs(data[1])))
     
-    elif(data[0]=='tampil'):
+    elif(data[0]=='tampilkan'):
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text=showmhs(data[1])))
-    
+    elif(data[0]=='tampilkan semua'):
+        line_bot_api.reply_message(event.reply_token, TextSendMessage(text=showallmhs()))
     elif(data[0]=='perbarui'):
         line_bot_api.reply_message(event.reply_token, TextSendMessage(updatemhs(data[1],data[2],data[3],data[4])))
 
