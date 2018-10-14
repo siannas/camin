@@ -52,6 +52,17 @@ def inputmhs(nrp, nama, kosan):
     elif(flag == "0"):
         return 'Data gagal dimasukkan\n'
 
+def updatemhs(nrp, nama, kosan):
+    r = requests.post("http://www.aditmasih.tk/api_pannas/update.php", data={'nrp': nrp, 'nama': nama, 'alamat': kosan})
+    data = r.json()
+
+    flag = data['flag']
+    
+    if(flag == "1"):
+        return 'Data '+nama+' berhasil diperbarui\n'
+    elif(flag == "0"):
+        return 'Data gagal diperbarui\n'    
+    
 def deletemhs(nrp):
     r = requests.post("http://www.aditmasih.tk/api_pannas/delete.php", data={'nrp': nrp})
     data = r.json()
@@ -96,7 +107,15 @@ def handle_message(event):
     
     
     data=text.split('-')
-    if(data[0]=='tambah'):
+    if(data[0]=='menu'):
+        line_bot_api.reply_message(event.reply_token, TextSendMessage(
+            '1. tambah-nrp(5)-nama-alamat\n'+
+            '2. perbarui-nrp(5)-nama-alamat\n'+
+            '3. tampil-nrp(5)\n'+
+            '4. hapus-nrp(5)\n'
+        ))
+    
+    elif(data[0]=='tambah'):
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text=inputmhs(data[1],data[2],data[3])))
     
     elif(data[0]=='hapus'):
@@ -105,6 +124,9 @@ def handle_message(event):
     elif(data[0]=='tampil'):
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text=showmhs(data[1])))
     
+    elif(data[0]=='perbarui'):
+        line_bot_api.reply_message(event.reply_token, TextSendMessage(text=updatemhs(data[1],data[2],data[3])))
+
     elif re.search('hai', text, re.IGNORECASE):
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text='Hai ' + profile.display_name))
     
