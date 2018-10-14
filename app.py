@@ -98,8 +98,8 @@ def showallmhs():
         index = 0
         
         while index<data['panjang']:
-            index += 1
             hasil = data['data_angkatan'][index]
+            index += 1
             text += str(index)+". nrp : " + hasil['nrp']
             text += "\n   nama : " + hasil['nama']
             text += "\n   alamat : " + hasil['alamat'] + "\n"            
