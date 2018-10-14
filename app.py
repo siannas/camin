@@ -96,13 +96,13 @@ def showallmhs():
     if(flag == "1"):
         text = ""
         index = 0
-        hasil = data['data_angkatan'][index]
-        while hasil:
-            index += 1
+        
+        while index<data['panjang']:
+            hasil = data['data_angkatan'][index]
             text += str(index)+". nrp : " + hasil['nrp']
             text += "\n   nama : " + hasil['nama']
             text += "\n   alamat : " + hasil['alamat'] + "\n"
-            hasil = data['data_angkatan'][index]
+            index += 1
         return text    
     elif(flag == "0"):
         return 'Data Tidak ada\n'        
