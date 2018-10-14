@@ -92,17 +92,16 @@ def showallmhs():
     data = r.json()
     
     flag = data['flag']
-    hasil = data['data_angkatan']
-    
+       
     if(flag == "1"):
         text = ''
         index = 0
-        #while index<3:
-        row=hasil[index]
-        index++
-        text += index+". nrp : " + row['nrp']
-        text += "\n  nama : " + row['nama']
-        text += "\n  alamat : " + row['alamat']
+        while index<3:
+            hasil = data['data_angkatan'][index]
+            index++
+            text += index+". nrp : " + hasil['nrp']
+            text += "\n  nama : " + hasil['nama']
+            text += "\n  alamat : " + hasil['alamat']
         return text    
     elif(flag == "0"):
         return 'Data Tidak ada\n'    
