@@ -94,12 +94,12 @@ def showallmhs():
     flag = data['flag']
        
     if(flag == "1"):
-        text = ''
+        text = ""
         index = 0
         while index<3:
             hasil = data['data_angkatan'][index]
             index++
-            text += index+". nrp : " + hasil['nrp']
+            text += str(index)+". nrp : " + hasil['nrp']
             text += "\n  nama : " + hasil['nama']
             text += "\n  alamat : " + hasil['alamat']
         return text    
