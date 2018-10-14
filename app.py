@@ -102,8 +102,7 @@ def showallmhs():
             hasil = data['data_angkatan'][index]
             text += str(index)+". nrp : " + hasil['nrp']
             text += "\n   nama : " + hasil['nama']
-            text += "\n   alamat : " + hasil['alamat'] + "\n"
-            
+            text += "\n   alamat : " + hasil['alamat'] + "\n"            
         return text    
     elif(flag == "0"):
         return 'Data Tidak ada\n'        
