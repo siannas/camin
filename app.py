@@ -106,12 +106,7 @@ def handle_message(event):
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text=showmhs(data[1])))
     
     elif re.search('hai', text, re.IGNORECASE):
-        line_bot_api.reply_message(
-            event.reply_token, [
-                TextSendMessage(text='Hai ' + profile.display_name),
-                TextSendMessage(text='statusmu : ' + profile.status_message)
-            ]
-        )
+        line_bot_api.reply_message(event.reply_token, TextSendMessage(text))
     line_bot_api.reply_message(event.reply_token, TextSendMessage(text))
             
 import os
