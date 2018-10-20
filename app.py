@@ -149,10 +149,10 @@ def handle_message(event):
                 layout='vertical',
                 contents=[
                     # title
-                    TextComponent(text='Brown Cafe', weight='bold', size='xl'),
+                    TextComponent(text='HRD utama', weight='bold', size='xl'),
                     # Company
                     TextComponent(
-                        text='Brown Cafe', 
+                        text='PT Kapal Api', 
                         weight='bold', 
                         size='lg',
                         color='#aaaaaa',
@@ -172,7 +172,7 @@ def handle_message(event):
                                         text='Location',
                                         color='#aaaaaa',
                                         size='sm',
-                                        flex=1
+                                        flex=2
                                     ),
                                     TextComponent(
                                         text='Surabaya, Jawa Timur',
@@ -191,7 +191,7 @@ def handle_message(event):
                                         text='Desc',
                                         color='#aaaaaa',
                                         size='sm',
-                                        flex=1
+                                        flex=2
                                     ),
                                     TextComponent(
                                         text="Menangani semua masalah hardware di perusahaan yang meliputi: PC/NB, Printer, Scanner, Monitor,CCTV dan mesin Absensi serta melakukan update terus...",
