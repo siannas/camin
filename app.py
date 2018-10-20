@@ -118,25 +118,8 @@ def callback():
         abort(400)
     return 'OK'
 
-@handler.add(MessageEvent, message=TextMessage)
-def handle_message(event):
-    text = event.message.text #simplify for receove message
-    sender = event.source.user_id #get usesenderr_id
-    gid = event.source.sender_id #get group_id
-    profile = line_bot_api.get_profile(sender)
-    
-    
-    data=text.split('-')
-    if(data[0]=='menu'):
-        line_bot_api.reply_message(event.reply_token, TextSendMessage(
-            '1. tambah-nrp(5)-nama-alamat\n'+
-            '2. perbarui-nrp lama-nrp(5)-nama-alamat\n'+
-            '3. tampilkan-nrp(5)\n'+
-            '4. hapus-nrp(5)\n'+
-            '5. tampilkan semua'
-        ))
-    elif text == 'flex':
-        bubble = BubbleContainer(
+def flex_message():
+    bubble = BubbleContainer(
             direction='ltr',
             hero=ImageComponent(
                 url='https://siva.jsstatic.com/id/16217/images/logo/16217_logo_0_736610.jpg',
@@ -223,6 +206,27 @@ def handle_message(event):
                 ]
             ),
         )
+    return bubble
+
+@handler.add(MessageEvent, message=TextMessage)
+def handle_message(event):
+    text = event.message.text #simplify for receove message
+    sender = event.source.user_id #get usesenderr_id
+    gid = event.source.sender_id #get group_id
+    profile = line_bot_api.get_profile(sender)
+    
+    
+    data=text.split('-')
+    if(data[0]=='menu'):
+        line_bot_api.reply_message(event.reply_token, TextSendMessage(
+            '1. tambah-nrp(5)-nama-alamat\n'+
+            '2. perbarui-nrp lama-nrp(5)-nama-alamat\n'+
+            '3. tampilkan-nrp(5)\n'+
+            '4. hapus-nrp(5)\n'+
+            '5. tampilkan semua'
+        ))
+    elif text == 'flex':
+        bubble = flex_message()
         message = FlexSendMessage(alt_text="hello", contents=bubble)
         line_bot_api.reply_message(
             event.reply_token,
