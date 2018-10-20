@@ -196,7 +196,7 @@ def handle_message(event):
                                         wrap=True,
                                         color='#666666',
                                         size='sm',
-                                        flex=5,
+                                        flex=5
                                     ),
                                 ],
                             ),
