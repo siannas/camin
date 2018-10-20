@@ -141,7 +141,7 @@ def handle_message(event):
             hero=ImageComponent(
                 url='https://siva.jsstatic.com/id/16217/images/logo/16217_logo_0_736610.jpg',
                 size='full',
-                aspect_ratio='20:13',
+                aspect_ratio='2:1',
                 aspect_mode='cover',
                 action=URIAction(uri='http://example.com', label='label')
             ),
@@ -155,7 +155,8 @@ def handle_message(event):
                         text='Brown Cafe', 
                         weight='bold', 
                         size='lg',
-                        color='#aaaaaa'
+                        color='#aaaaaa',
+                        align='end'
                     ),
                     # info
                     BoxComponent(
@@ -215,7 +216,7 @@ def handle_message(event):
                     SeparatorComponent(),
                     # websiteAction
                     ButtonComponent(
-                        style='link',
+                        style='secondary',
                         height='sm',
                         action=URIAction(label='WEBSITE', uri="https://example.com")
                     )
