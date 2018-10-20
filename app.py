@@ -154,7 +154,7 @@ def handle_message(event):
                     TextComponent(
                         text='Brown Cafe', 
                         weight='bold', 
-                        size='l',
+                        size='lg',
                         color='#aaaaaa'
                     ),
                     # info
