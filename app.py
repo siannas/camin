@@ -139,7 +139,7 @@ def handle_message(event):
         bubble = BubbleContainer(
             direction='ltr',
             hero=ImageComponent(
-                url='https://example.com/cafe.jpg',
+                url='https://siva.jsstatic.com/id/16217/images/logo/16217_logo_0_736610.jpg',
                 size='full',
                 aspect_ratio='20:13',
                 aspect_mode='cover',
@@ -150,19 +150,12 @@ def handle_message(event):
                 contents=[
                     # title
                     TextComponent(text='Brown Cafe', weight='bold', size='xl'),
-                    # review
-                    BoxComponent(
-                        layout='baseline',
-                        margin='md',
-                        contents=[
-                            IconComponent(size='sm', url='https://example.com/gold_star.png'),
-                            IconComponent(size='sm', url='https://example.com/grey_star.png'),
-                            IconComponent(size='sm', url='https://example.com/gold_star.png'),
-                            IconComponent(size='sm', url='https://example.com/gold_star.png'),
-                            IconComponent(size='sm', url='https://example.com/grey_star.png'),
-                            TextComponent(text='4.0', size='sm', color='#999999', margin='md',
-                                          flex=0)
-                        ]
+                    # Company
+                    TextComponent(
+                        text='Brown Cafe', 
+                        weight='bold', 
+                        size='l',
+                        color='#aaaaaa'
                     ),
                     # info
                     BoxComponent(
@@ -175,18 +168,17 @@ def handle_message(event):
                                 spacing='sm',
                                 contents=[
                                     TextComponent(
-                                        text='Place',
+                                        text='Location',
                                         color='#aaaaaa',
                                         size='sm',
                                         flex=1
                                     ),
                                     TextComponent(
-                                        text='Shinjuku, Tokyo',
+                                        text='Surabaya, Jawa Timur',
                                         wrap=True,
                                         color='#666666',
                                         size='sm',
                                         flex=5
-                                    )
                                 ],
                             ),
                             BoxComponent(
@@ -194,13 +186,13 @@ def handle_message(event):
                                 spacing='sm',
                                 contents=[
                                     TextComponent(
-                                        text='Time',
+                                        text='Desc',
                                         color='#aaaaaa',
                                         size='sm',
                                         flex=1
                                     ),
                                     TextComponent(
-                                        text="10:00 - 23:00",
+                                        text="Menangani semua masalah hardware di perusahaan yang meliputi: PC/NB, Printer, Scanner, Monitor,CCTV dan mesin Absensi serta melakukan update terus...",
                                         wrap=True,
                                         color='#666666',
                                         size='sm',
@@ -218,12 +210,6 @@ def handle_message(event):
                 contents=[
                     # callAction, separator, websiteAction
                     SpacerComponent(size='sm'),
-                    # callAction
-                    ButtonComponent(
-                        style='link',
-                        height='sm',
-                        action=URIAction(label='CALL', uri='tel:000000'),
-                    ),
                     # separator
                     SeparatorComponent(),
                     # websiteAction
