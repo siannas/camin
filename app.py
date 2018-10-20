@@ -206,7 +206,8 @@ def flex_message():
                 ]
             ),
         )
-    return bubble
+    tes = [bubble, bubble]
+    return tes
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
