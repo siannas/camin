@@ -31,7 +31,7 @@ def cariKerja ():
             "lokasi":lokasi,
             "link":link
         }
+        
         idx += 1
+    #print(result)
     return result
-    #print (result)
-cariKerja()

@@ -1,3 +1,5 @@
+from scrape import *
+
 from flask import Flask, request, abort
 
 from linebot import (
@@ -119,23 +121,26 @@ def callback():
     return 'OK'
 
 def flex_message():
-    bubble = BubbleContainer(
+    data = cariKerja()
+    hasil = []
+    for key, value in data.items():        
+        bubble = BubbleContainer(
             direction='ltr',
             hero=ImageComponent(
-                url='https://siva.jsstatic.com/id/16217/images/logo/16217_logo_0_736610.jpg',
+                url=value["gambar"],
                 size='full',
                 aspect_ratio='2:1',
                 aspect_mode='cover',
-                action=URIAction(uri='http://example.com', label='label')
+                action=URIAction(uri=value["link"], label='label')
             ),
             body=BoxComponent(
                 layout='vertical',
                 contents=[
                     # title
-                    TextComponent(text='HRD utama', weight='bold', size='xl'),
+                    TextComponent(text=value["job"], weight='bold', size='xl'),
                     # Company
                     TextComponent(
-                        text='PT Kapal Api', 
+                        text=value["company"], 
                         weight='bold', 
                         size='lg',
                         color='#aaaaaa',
@@ -158,7 +163,7 @@ def flex_message():
                                         flex=2
                                     ),
                                     TextComponent(
-                                        text='Surabaya, Jawa Timur',
+                                        text=value["lokasi"],
                                         wrap=True,
                                         color='#666666',
                                         size='sm',
@@ -201,14 +206,18 @@ def flex_message():
                     ButtonComponent(
                         style='secondary',
                         height='sm',
-                        action=URIAction(label='WEBSITE', uri="https://example.com")
+                        action=URIAction(label='kunjungi', uri=value["link"])
                     )
                 ]
             ),
         )
+        hasil.append(bubble)
+        
+    container = CarouselContainer(
+        contents=hasil)
+    return(container)
+#flex_message()
     
-    return CarouselContainer(contents=[bubble, bubble])
-
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     text = event.message.text #simplify for receove message
@@ -255,8 +264,6 @@ def handle_message(event):
     d = json.load(json_data)
     print(d)
 """
-tesaja = flex_message()
-print(tesaja)
 
 import os
 if __name__ == "__main__":
