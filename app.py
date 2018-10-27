@@ -212,10 +212,10 @@ def flex_message():
             ),
         )
         hasil.append(bubble)
-        
-    container = CarouselContainer(contents=hasil)
-    return(container)
+    return(CarouselContainer(contents=hasil))
 
+#tesaja = flex_message()
+#print(tesaja)
     
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):

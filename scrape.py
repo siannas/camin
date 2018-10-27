@@ -2,7 +2,9 @@ import urllib.request
 from bs4 import BeautifulSoup
 
 def cariKerja ():
-    url = 'https://www.jobstreet.co.id/id/job-search/job-vacancy.php?ojs=1'
+    url = 'https://www.jobstreet.co.id/id/job-search/job-vacancy/3/?src=16&ojs=1'
+    no_image = 'https://upload.wikimedia.org/wikipedia/ja/b/b5/Noimage_image.png'
+    
     #---------------Make_connection_https--------------#
     req = urllib.request.Request(url, headers={'User-Agent' : "Magic Browser"})
     con = urllib.request.urlopen(req)
@@ -18,7 +20,10 @@ def cariKerja ():
         id_tag = "job_ad_"+ str(idx)
         cntr = containers.find("div",id=id_tag) 
         
-        gambar = cntr.find("img", "img-company-logo")['data-original']
+        try:
+            gambar = cntr.find("img", "img-company-logo")['data-original']
+        except:
+            gambar = no_image
         job = cntr.find("h2").text
         company = cntr.h3.a.span.text
         lokasi = cntr.ul.li.span.text
@@ -31,7 +36,5 @@ def cariKerja ():
             "lokasi":lokasi,
             "link":link
         }
-        
         idx += 1
-    #print(result)
-    return result
+        return result
