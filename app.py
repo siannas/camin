@@ -213,10 +213,9 @@ def flex_message():
         )
         hasil.append(bubble)
         
-    container = CarouselContainer(
-        contents=hasil)
+    container = CarouselContainer(contents=hasil)
     return(container)
-#flex_message()
+
     
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
