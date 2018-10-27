@@ -228,7 +228,7 @@ def handle_message(event):
         ))
     elif text == 'flex':
         bubble = flex_message()
-        message = TemplateSendMessage(alt_text="hello", contents=bubble)
+        message = FlexSendMessage(alt_text="hello", contents=bubble)
         line_bot_api.reply_message(
             event.reply_token,
             message
