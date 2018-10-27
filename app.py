@@ -206,7 +206,7 @@ def flex_message():
                 ]
             ),
         )
-    tes = [bubble, bubble]
+    tes = CarouselTemplate(columns=[bubble,bubble])
     return tes
 
 @handler.add(MessageEvent, message=TextMessage)
@@ -228,7 +228,7 @@ def handle_message(event):
         ))
     elif text == 'flex':
         bubble = flex_message()
-        message = FlexSendMessage(alt_text="hello", contents=bubble)
+        message = TemplateSendMessage(alt_text="hello", contents=bubble)
         line_bot_api.reply_message(
             event.reply_token,
             message
