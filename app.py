@@ -206,8 +206,8 @@ def flex_message():
                 ]
             ),
         )
-    tes = CarouselTemplate(columns=[bubble,bubble])
-    return tes
+    
+    return CarouselContainer(contents=[bubble, bubble])
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
@@ -251,7 +251,13 @@ def handle_message(event):
     elif re.search('hai', text, re.IGNORECASE):
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text='Hai ' + profile.display_name))
     
-            
+"""with open('bubble.json') as json_data:
+    d = json.load(json_data)
+    print(d)
+"""
+tesaja = flex_message()
+print(tesaja)
+
 import os
 if __name__ == "__main__":
     port = int(os.environ.get('PORT', 5000))
